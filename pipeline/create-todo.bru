@@ -1,0 +1,19 @@
+meta {
+  name: Create Todo
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/api/todos
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Buy groceries",
+    "description": "Milk, eggs, bread",
+    "completed": false
+  }
+}

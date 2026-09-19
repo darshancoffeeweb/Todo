@@ -1,0 +1,19 @@
+meta {
+  name: Update Todo (PUT)
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:8080/api/todos/1
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Buy groceries and snacks",
+    "description": "Milk, eggs, bread, chips",
+    "completed": true
+  }
+}
