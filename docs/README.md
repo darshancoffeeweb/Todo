@@ -24,7 +24,7 @@ A RESTful Todo application built with Spring Boot and Spring Data JPA, backed by
 
 ## Overview
 
-TodoApp is a simple, well-structured example of a Spring Boot microservice. It follows a clean layered architecture (`Controller → Service → Repository → Entity`) with DTOs separating the public API contract from the JPA entity.
+TodoApp is a simple, well-structured example of a Spring Boot monolithic application. It follows a clean layered architecture (`Controller → Service → Repository → Entity`) with DTOs separating the public API contract from the JPA entity.
 
 ## Tech Stack
 
@@ -43,36 +43,51 @@ TodoApp is a simple, well-structured example of a Spring Boot microservice. It f
 
 ```
 todoapp
+├── .mvn/
+│   └── wrapper/
+│       └── maven-wrapper.properties
 ├── docs/
-│   └── README.md                      # This document
+│   └── README.md                        # This document
+├── pipeline/
+│   ├── bruno.json
+│   ├── create-todo.bru                  # Bruno API requests
+│   ├── delete-todo.bru
+│   ├── get-all-todos.bru
+│   ├── get-todo-by-id.bru
+│   ├── get-todos-filtered.bru
+│   ├── patch-todo.bru
+│   └── update-todo.bru
 ├── src/
 │   ├── main/
 │   │   ├── java/com/darshan/todoapp/
-│   │   │   ├── application/
-│   │   │   │   ├── TodoappApplication.java
-│   │   │   │   ├── controller/
-│   │   │   │   │   └── TodoController.java
-│   │   │   │   ├── dto/
-│   │   │   │   │   ├── TodoRequest.java
-│   │   │   │   │   └── TodoResponse.java
-│   │   │   │   ├── entity/
-│   │   │   │   │   └── Todo.java
-│   │   │   │   ├── repository/
-│   │   │   │   │   └── TodoRepository.java
-│   │   │   │   ├── service/
-│   │   │   │   │   ├── TodoService.java
-│   │   │   │   │   └── TodoNotFoundException.java
-│   │   │   │   └── pipeline/
-│   │   │   │       ├── bruno.json
-│   │   │   │       └── *.bru            # Bruno API requests
+│   │   │   ├── TodoappApplication.java
+│   │   │   ├── controller/
+│   │   │   │   └── TodoController.java
+│   │   │   ├── dto/
+│   │   │   │   ├── TodoRequest.java
+│   │   │   │   └── TodoResponse.java
+│   │   │   ├── entity/
+│   │   │   │   └── Todo.java
+│   │   │   ├── repository/
+│   │   │   │   └── TodoRepository.java
+│   │   │   └── service/
+│   │   │       ├── TodoService.java
+│   │   │       └── TodoNotFoundException.java
 │   │   └── resources/
-│   │       └── application.properties
+│   │       ├── application.properties
+│   │       ├── static/
+│   │       └── templates/
 │   └── test/
 │       └── java/com/darshan/todoapp/
 │           └── TodoappApplicationTests.java
+├── .gitattributes
+├── .gitignore
+├── docker-compose.yml
+├── Dockerfile
+├── HELP.md
 ├── pom.xml
-├── mvnw / mvnw.cmd
-└── Weekly-Reports/
+├── mvnw
+└── mvnw.cmd
 ```
 
 ## Prerequisites
