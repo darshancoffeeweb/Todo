@@ -234,7 +234,7 @@ curl -X DELETE http://localhost:8080/api/todos/1
 
 ## Data Model
 
-### `Todo` Entity
+### `User` Entity
 
 | Column        | Type            | Constraints                          |
 | ------------- | --------------- | ------------------------------------ |

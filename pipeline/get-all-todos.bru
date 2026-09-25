@@ -1,11 +1,19 @@
 meta {
   name: Get All Todos
   type: http
-  seq: 1
+  seq: 4
 }
 
 get {
-  url: http://localhost:8080/api/todos
+  url: http://localhost:8082/api/todos
   body: none
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+vars:pre-request {
+  token: eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJkYXJzaGFuQGV4YW1wbGUuY29tIiwidXNlcklkIjoxLCJpYXQiOjE3OTAzMzM3OTQsImV4cCI6MTc5MDQyMDE5NH0.QfKNrVUfxIimGOtrzVoN1eOoGilNbu2EPp3kfE7o48nM8NOjN45uXtdCutFLEmP9
 }

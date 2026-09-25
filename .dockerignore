@@ -1,0 +1,12 @@
+target/
+**/target/
+.idea/
+*.iml
+.git/
+.gitignore
+HELP.md
+.mvn/wrapper/maven-wrapper.jar
+**/src/main/**/target/
+**/src/test/**/target/
+pipeline/
+docs/

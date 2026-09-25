@@ -1,19 +1,23 @@
 meta {
   name: Update Todo (PUT)
   type: http
-  seq: 5
+  seq: 7
 }
 
 put {
-  url: http://localhost:8080/api/todos/1
+  url: http://localhost:8082/api/todos/1
   body: json
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
 }
 
 body:json {
   {
     "title": "Buy groceries and snacks",
     "description": "Milk, eggs, bread, chips",
-    "completed": true
+    "status": "IN_PROGRESS"
   }
 }

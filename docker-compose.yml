@@ -1,13 +1,32 @@
 services:
-  todoapp:
-    build: .
-    container_name: todoapp
+  auth-service:
+    build:
+      context: .
+      dockerfile: Services/AuthService/Dockerfile
+    container_name: auth-service
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/todo_db
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/auth_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: root
+      JWT_SECRET: 6c2b8f8e9a4d7f1e3b5c8a2d4f6e8a1c3b5d7f9e2a4c6b8d1f3e5a7c9b2d4f6e8a1c
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  post-service:
+    build:
+      context: .
+      dockerfile: Services/PostService/Dockerfile
+    container_name: post-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/post_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+      JWT_SECRET: 6c2b8f8e9a4d7f1e3b5c8a2d4f6e8a1c3b5d7f9e2a4c6b8d1f3e5a7c9b2d4f6e8a1c
     depends_on:
       postgres:
         condition: service_healthy
@@ -16,15 +35,15 @@ services:
     image: postgres:16-alpine
     container_name: todoapp-postgres
     environment:
-      POSTGRES_DB: todo_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d todo_db"]
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5

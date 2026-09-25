@@ -1,17 +1,21 @@
 meta {
   name: Patch Todo (Partial Update)
   type: http
-  seq: 6
+  seq: 8
 }
 
 patch {
-  url: http://localhost:8080/api/todos/1
+  url: http://localhost:8082/api/todos/1
   body: json
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
 }
 
 body:json {
   {
-    "completed": true
+    "status": "COMPLETED"
   }
 }
