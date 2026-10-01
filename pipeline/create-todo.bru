@@ -1,19 +1,27 @@
 meta {
   name: Create Todo
   type: http
-  seq: 4
+  seq: 3
 }
 
 post {
-  url: http://localhost:8080/api/todos
+  url: http://localhost:8082/api/todos
   body: json
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
 }
 
 body:json {
   {
-    "title": "Buy groceries",
-    "description": "Milk, eggs, bread",
-    "completed": false
+    "title": "all Buy groceries",
+    "description": "Mil sdfha ,k, eggs, bread",
+    "status": "PENDING"
   }
+}
+
+vars:pre-request {
+  token: eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJkYXJzaGFuQGV4YW1wbGUuY29tIiwidXNlcklkIjoxLCJpYXQiOjE3OTAzMzk3OTksImV4cCI6MTc5MDQyNjE5OX0.MaIVYZ6lM6EcYlc-Wjp1IipLIIXoDIOvegjx4nTLRdvPHGV9vKgRHkxPrRcPbYGt
 }
